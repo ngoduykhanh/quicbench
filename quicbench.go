@@ -1,8 +1,13 @@
+// [0818/102023:ERROR:spdy_utils.cc(158)] Parsed content length 2048 is inconsistent with previously detected content length 5808101
+// [0818/102023:ERROR:go_quic_spdy_client_stream.cc(82)] Failed to parse header list: { :version=HTTP/1.1, :status=200, date=Thu, 18 Aug 2016 03:20:06 GMT, content-type=text/plain, last-modified=Tue, 16 Aug 2016 06:50:31 GMT, etag="57b2b7b7-800", server=nginx/1.10.0 (Ubuntu), content-length=2048, accept-ranges=bytes, }
+// https://github.com/devsisters/libquic/blob/c4b027b5ae4bfbdbec52ad925ff41ffdf81d06df/src/net/quic/spdy_utils.cc#L159
+
 package main
 
 import (
 	"bufio"
-	"bytes"
+	"by
+	writeTimeout     inttes"
 	"flag"
 	"fmt"
 	"io"
@@ -16,7 +21,6 @@ import (
 	"sync"
 	"syscall"
 	"time"
-
 	"github.com/devsisters/goquic"
 )
 
@@ -31,7 +35,6 @@ var (
 	turnonLog        bool
 	postDataFilePath string
 	connectTimeout   int
-	writeTimeout     int
 	readTimeout      int
 )
 
@@ -159,6 +162,7 @@ func readLines(path string) (lines []string, err error) {
 func NewConfiguration() *Configuration {
 
 	if urlsFilePath == "" && url == "" {
+		fmt.Println("URL must be provided")
 		flag.Usage()
 		os.Exit(1)
 	}
@@ -175,12 +179,13 @@ func NewConfiguration() *Configuration {
 		os.Exit(1)
 	}
 
-	configuration := &Configuration{
+	configuration := &Configuration {
 		urls:      make([]string, 0),
 		method:    "GET",
 		postData:  nil,
 		keepAlive: keepAlive,
-		requests:  int64((1 << 63) - 1)}
+		requests:  int64((1 << 63) - 1)
+	}
 
 	if period != -1 {
 		configuration.period = period
