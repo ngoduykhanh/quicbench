@@ -28,13 +28,13 @@ CGO_LDFLAGS="-L$GOPATH/src/github.com/devsisters/goquic/lib/$GOOS_$GOARCH"
 For example, building quicbench in Mac:
 
 ```bash
-CGO_LDFLAGS="-L$GOPATH/src/github.com/devsisters/goquic/lib/darwin_amd64" go build $GOPATH/github.com/devsisters/quicbench/quicbench.go
+CGO_LDFLAGS="-L$GOPATH/src/github.com/devsisters/goquic/lib/darwin_amd64" go build $GOPATH/src/github.com/devsisters/quicbench/quicbench.go
 ```
 
 In Linux:
 
 ```bash
-CGO_LDFLAGS="-L$GOPATH/src/github.com/devsisters/goquic/lib/linux_amd64" go build $GOPATH/github.com/devsisters/quicbench/quicbench.go
+CGO_LDFLAGS="-L$GOPATH/src/github.com/devsisters/goquic/lib/linux_amd64" go build $GOPATH/src/github.com/devsisters/quicbench/quicbench.go
 ```
 
 ## Usage
@@ -43,10 +43,14 @@ CGO_LDFLAGS="-L$GOPATH/src/github.com/devsisters/goquic/lib/linux_amd64" go buil
    or toy server implementation in Chromium [here](http://www.chromium.org/quic/playing-with-quic)
 2. run quicbench for HTTP GET
 
-   ```$>go run quicbench.go -u http://localhost:80 -k=true -c 50 -r=10 -t 10```
+   ```$>go run quicbench.go -u http://localhost:80 -k=true -c 50 -t 10```
+   or
+   ```$>go run quicbench.go -u http://localhost:80 -k=true -c 50 -r 10``
 3. run quicbench for HTTP POST
 
-   ```$>go run quicbench.go -u http://localhost:80 -k=true -c 50 -r=10 -t 10 -d /tmp/post```
+   ```$>go run quicbench.go -u http://localhost:80 -k=true -c 50 -t 10 -d /tmp/post```
+   or
+   ```$>go run quicbench.go -u http://localhost:80 -k=true -c 50 -r 10 -d /tmp/post```
 
 
 Notes
