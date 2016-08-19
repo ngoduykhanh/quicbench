@@ -6,8 +6,7 @@ package main
 
 import (
 	"bufio"
-	"by
-	writeTimeout     inttes"
+	"bytes"
 	"flag"
 	"fmt"
 	"io"
